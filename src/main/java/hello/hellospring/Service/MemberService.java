@@ -19,31 +19,31 @@ public class MemberService {
     }
 
     //회원가입
-//    public Long join(Member member){
-//        //같은 이름이 있는 중복 회원 X
-//        //Optional<Member> result = memberRepository.findByName(member.getName());
-//        //result.ifPresent(m -> {
-//        //   throw new IllegalStateException("이미 존재하는 회원이빈다.");
-//        //});
-//
-//        validateDuplicateMember(member); //중복 회원 검증
-//        memberRepository.save(member);
-//        return member.getId();
-//    }
+    public Long join(Member member){
+        //같은 이름이 있는 중복 회원 X
+        //Optional<Member> result = memberRepository.findByName(member.getName());
+        //result.ifPresent(m -> {
+        //   throw new IllegalStateException("이미 존재하는 회원이빈다.");
+        //});
+
+        validateDuplicateMember(member); //중복 회원 검증
+        memberRepository.save(member);
+        return member.getId();
+    }
 
     //AOP가 필요한 상황(ex 메소드의 호출시간 계산)
-    public Long join(Member member) {
-        long start = System.currentTimeMillis();
-        try {
-            validateDuplicateMember(member); //중복 회원 검증
-            memberRepository.save(member);
-            return member.getId();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("join " + timeMs + "ms");
-        }
-    }
+//    public Long join(Member member) {
+//        long start = System.currentTimeMillis();
+//        try {
+//            validateDuplicateMember(member); //중복 회원 검증
+//            memberRepository.save(member);
+//            return member.getId();
+//        } finally {
+//            long finish = System.currentTimeMillis();
+//            long timeMs = finish - start;
+//            System.out.println("join " + timeMs + "ms");
+//        }
+//    }
 
 
 
@@ -55,20 +55,20 @@ public class MemberService {
     }
 
     //전체 회원 조회
-//    public List<Member> findmembers(){
-//        return memberRepository.findAll();
-//    }
-
-    public List<Member> findMembers() {
-        long start = System.currentTimeMillis();
-        try {
-            return memberRepository.findAll();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("findMembers " + timeMs + "ms");
-        }
+    public List<Member> findMembers(){
+        return memberRepository.findAll();
     }
+
+//    public List<Member> findMembers() {
+//        long start = System.currentTimeMillis();
+//        try {
+//            return memberRepository.findAll();
+//        } finally {
+//            long finish = System.currentTimeMillis();
+//            long timeMs = finish - start;
+//            System.out.println("findMembers " + timeMs + "ms");
+//        }
+//    }
 
     //개인 회원 조회
     public Optional<Member> findOne(Long memberId){
